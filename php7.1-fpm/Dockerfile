@@ -20,5 +20,6 @@ RUN apt install -y php7.1 php7.1-bcmath php7.1-bz2 php7.1-cgi \
     php7.1-zip php-geoip php-memcache php-memcached php-redis \
     php-uuid php-yaml php-net-ftp
 RUN mkdir /run/php
+RUN sed -i 's/listen\ =\ \/run\/php\/php7.1-fpm.sock/listen\ =\ 0.0.0.0:9000/' /etc/php/7.1/fpm/pool.d/www.conf
 EXPOSE 9000
 CMD ["php-fpm7.1", "-F"]
