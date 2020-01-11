@@ -17,5 +17,6 @@ RUN apt install -y php5.6 php5.6-bcmath php5.6-bz2 php5.6-cgi php5.6-cli \
     php5.6-opcache php5.6-readline php5.6-recode php5.6-soap php5.6-xml \
     php5.6-xmlrpc php5.6-xsl php5.6-zip 
 RUN mkdir /run/php
+RUN sed -i 's/listen\ =\ \/run\/php\/php5.6-fpm.sock/listen\ =\ 0.0.0.0:9000/' /etc/php/5.6/fpm/pool.d/www.conf
 EXPOSE 9000
 CMD ["php-fpm5.6", "-F"]
